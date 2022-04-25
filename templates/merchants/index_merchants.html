@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Merchants</h2>
+
+{% for merchant in merchants %}
+
+<section>
+    <p>{{ merchant.name }}</p>
+    <a href="/merchants/{{ merchant.id }}/edit"></a>
+    <form action="/merchants/{{ merchant.id }}/delete" method="POST">
+        <input type="submit" value="Delete">
+    </form>
+</section>
+
+{% endfor %}
+{% endblock %}
