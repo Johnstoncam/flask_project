@@ -1,14 +1,12 @@
-from models.biting import Biting
-import repositories.biting_repository as biting_repository
+from models.merchant import Merchant
+import repositories.merchant_repository as merchant_repository
 
-from models.human import Human
-import repositories.human_repository as human_repository
+from models.tag import Tag
+import repositories.merchant_repository as merchant_repository
 
-from models.zombie import Zombie
-import repositories.zombie_repository as zombie_repository
+from models.transaction import Transaction
+import repositories.transaction_repository as transaction_repository
 
-from models.zombie_type import ZombieType
-import repositories.zombie_type_repository as zombie_type_repository
 
 # biting_repository.delete_all()
 # human_repository.delete_all()
