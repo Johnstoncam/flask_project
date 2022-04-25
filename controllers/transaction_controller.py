@@ -27,9 +27,10 @@ def new_transaction():
 def create_transaction():
     merchant_id = request.form["merchant_id"]
     tag_id = request.form["tag_id"]
-    tranaction = merchant_repository.select(merchant_id)
+    value = request.form["value"]
+    merchant = merchant_repository.select(merchant_id)
     tag = tag_repository.select(tag_id)
-    new_transaction = Transaction(merchant_id, tag_id)
+    new_transaction = Transaction(merchant, tag, value)
     transaction_repository.save(new_transaction)
     return redirect("/transactions")
 

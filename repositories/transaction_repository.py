@@ -7,7 +7,7 @@ import repositories.tag_repository as tag_repository
 
 def save(transaction):
     sql = "INSERT INTO transactions (merchant_id, tag_id, value) VALUES (%s, %s, %s) RETURNING id"
-    values = [transaction.value]
+    values = [transaction.merchant.id, transaction.tag.id, transaction.value]
     results = run_sql(sql, values)
     id = results[0]['id']
     transaction.id = id
@@ -20,7 +20,7 @@ def select_all():
     for result in results:
         merchant = merchant_repository.select(result["merchant_id"])
         tag = tag_repository.select(result["tag_id"])
-        transaction = Transaction(merchant, tag, result["id"])
+        transaction = Transaction(merchant, tag, result["value"], result["id"])
         transactions.append(transaction)
     return transactions
 
