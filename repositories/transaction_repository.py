@@ -6,8 +6,8 @@ from models.tag import Tag
 import repositories.tag_repository as tag_repository
 
 def save(transaction):
-    sql = "INSERT INTO transactions (merchant_id, tag_id) VALUES (%s, %s) RETURNING id"
-    values = [transaction.merchant.id, transaction.tag.id]
+    sql = "INSERT INTO transactions (merchant_id, tag_id, value) VALUES (%s, %s, %s) RETURNING id"
+    values = [transaction.value]
     results = run_sql(sql, values)
     id = results[0]['id']
     transaction.id = id
@@ -51,3 +51,13 @@ def update(transaction):
     values = [transaction.merchant.id, transaction.tag.id, transaction.id]
     run_sql(sql, values)
 
+
+def transactions(id):
+    transactions = []
+    sql = "SELECT merchants.* FROM merchants INNER JOIN transactions ON transactions.merchant_id = merchant.id WHERE transactions.tag_id = %s"
+    values = [id]
+    results = run_sql(sql, values)
+    for result in results:
+        merchant = Merchant(result["name"])
+        transactions.append(merchant)
+    return transactions

@@ -45,12 +45,3 @@ def update(tag):
     run_sql(sql, values)
 
 
-def transactions(id):
-    transactions = []
-    sql = "SELECT merchants.* FROM merchants INNER JOIN transactions ON transactions.merchant_id = merchant.id WHERE transactions.tag_id = %s"
-    values = [id]
-    results = run_sql(sql, values)
-    for result in results:
-        merchant = Merchant(result["name"])
-        transactions.append(merchant)
-    return transactions

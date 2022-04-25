@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Transactions</h2>
+
+{% for transaction in transactions %}
+
+<section>
+    <h3>{{ transaction.value }} spent in {{ transaction.merchant.name }}</h3>
+    <a href="/transactions/{{ transaction.id }}/edit">Edit</a>
+    <form action="/transactions/{{ transaction.id }}/delete" method="POST">
+        <input type="submit" value="Delete">
+    </form>
+    <a href="/transactions/{{ transaction.id }}">Details</a>
+</section>
+
+{% endfor %}
+{% endblock %} 

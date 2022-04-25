@@ -5,48 +5,45 @@ from models.tag import Tag
 import repositories.merchant_repository as merchant_repository
 import repositories.tag_repository as tag_repository
 
-def save(transaction):
-    sql = "INSERT INTO transactions (merchant_id, tag_id) VALUES (%s, %s) RETURNING id"
-    values = [transaction.merchant.id, transaction.tag.id]
+def save(merchant):
+    sql = "INSERT INTO merchants (name) VALUES (%s) RETURNING id"
+    values = [merchant.name]
     results = run_sql(sql, values)
     id = results[0]['id']
-    transaction.id = id
+    merchant.id = id
 
 
 def select_all():
-    transactions = []
-    sql = "SELECT * FROM transaction"
+    merchants = []
+    sql = "SELECT * FROM merchants"
     results = run_sql(sql)
     for result in results:
-        merchant = merchant_repository.select(result["merchant_id"])
-        tag = tag_repository.select(result["tag_id"])
-        transaction = Transaction(merchant, tag, result["id"])
-        transactions.append(transaction)
-    return transactions
-
+        merchant = Merchant(result["name"], result["id"])
+        merchants.append(merchant)
+    return merchants
 
 def select(id):
-    sql = "SELECT * FROM transactions WHERE id = %s"
+    sql = "SELECT * FROM merchants WHERE id = %s"
     values = [id]
     result = run_sql(sql, values)[0]
-    merchant = merchant_repository.select(result["merchant_id"])
-    tag = tag_repository.select(result["tag_id"])
-    transaction = Transaction(merchant, id, result["id"])
-    return transaction
+    merchant = Merchant(result["name"], result["id"])
+    return merchant
 
 
 def delete_all():
-    sql = "DELETE FROM transactions"
+    sql = "DELETE FROM merchants"
     run_sql(sql)
 
 
 def delete(id):
-    sql = "DELETE FROM transactions WHERE id = %s"
+    sql = "DELETE FROM merchants WHERE id = %s"
     values = [id]
     run_sql(sql, values)
 
 
-def update(transaction):
-    sql = "UPDATE transactions SET (merchant_id, tag_id) = (%s, %s) WHERE id = %s"
-    values = [transaction.merchant.id, transaction.tag.id, transaction.id]
+def update(merchant):
+    sql = "UPDATE merchants SET (name) = (%s) WHERE id = %s"
+    values = [merchant.name, merchant.id]
     run_sql(sql, values)
+
+
