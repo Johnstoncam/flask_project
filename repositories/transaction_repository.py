@@ -31,7 +31,7 @@ def select(id):
     result = run_sql(sql, values)[0]
     merchant = merchant_repository.select(result["merchant_id"])
     tag = tag_repository.select(result["tag_id"])
-    transaction = Transaction(merchant, tag, result["id"])
+    transaction = Transaction(merchant, tag, result["value"], result["id"])
     return transaction
 
 
@@ -47,8 +47,8 @@ def delete(id):
 
 
 def update(transaction):
-    sql = "UPDATE transactions SET (merchant_id, tag_id) = (%s, %s) WHERE id = %s"
-    values = [transaction.merchant.id, transaction.tag.id, transaction.id]
+    sql = "UPDATE transactions SET (merchant_id, tag_id, value) = (%s, %s, %s) WHERE id = %s"
+    values = [transaction.merchant.id, transaction.tag.id, transaction.value, transaction.id]
     run_sql(sql, values)
 
 

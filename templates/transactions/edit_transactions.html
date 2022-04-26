@@ -5,7 +5,7 @@
 
 <form action="/transactions/{{ transaction.id }}" method="POST">
     <div>
-        <label for="mercchant">Merchant:</label>
+        <label for="merchant">Merchant:</label>
         <select name="merchant_id" id="merchant">
             {% for merchant in merchants %}
             <option value="{{ merchant.id }}" {% if merchant.id == transaction.merchant.id %} selected {% endif %}>
@@ -23,6 +23,10 @@
             </option>
             {% endfor %}
         </select>
+    </div>  
+    <div>
+        <label for="value">Value:</label>
+        <input type="text" id="value" name="value" value="{{ transaction.value }}">
     </div>
     <div>
         <input type="submit">
