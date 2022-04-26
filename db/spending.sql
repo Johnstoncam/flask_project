@@ -19,6 +19,6 @@ CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
     merchant_id SERIAL REFERENCES merchants(id),
     tag_id SERIAL REFERENCES tags(id),
-    value Int
+    value FLOAT(2)
 );
 

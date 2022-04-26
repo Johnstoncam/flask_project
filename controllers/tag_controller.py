@@ -20,6 +20,7 @@ def new_tag():
 
 
 # CREATE
+# use this route create if statement None redirect to error page; else return to /tags
 @tags_blueprint.route("/tags", methods=["POST"])
 def create_tag():
     name = request.form["name"]

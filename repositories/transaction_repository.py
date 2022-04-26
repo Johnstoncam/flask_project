@@ -52,7 +52,7 @@ def update(transaction):
     run_sql(sql, values)
 
 
-def transactions(id):
+def select_transaction(id):
     transactions = []
     sql = "SELECT merchants.* FROM merchants INNER JOIN transactions ON transactions.merchant_id = merchant.id WHERE transactions.tag_id = %s"
     values = [id]

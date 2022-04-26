@@ -77,3 +77,9 @@ def show_transaction(id):
 def delete_transaction(id):
     transaction_repository.delete(id)
     return redirect("/transactions")
+
+# # SELECT BY TRANSACTION ID
+# @transactions_blueprint.route("/transactions/<id>/delete", methods=["POST"])
+# def asdfasd(id):
+#     transaction_repository.select_transaction(id)
+#     return 
