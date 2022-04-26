@@ -62,6 +62,12 @@ def update_transaction(id):
     transaction_repository.update(transaction)
     return redirect("/transactions")
 
+# SELECT AND SHOW
+@transactions_blueprint.route("/transactions/<id>")
+def show_transaction(id):
+    transaction = transaction_repository.select(id)
+    return render_template('transactions/show_transactions.html', transaction=transaction)
+
 
 # DELETE
 @transactions_blueprint.route("/transactions/<id>/delete", methods=["POST"])

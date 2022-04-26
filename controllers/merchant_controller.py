@@ -39,11 +39,18 @@ def edit_merchant(id):
 # UPDATE
 @merchants_blueprint.route("/merchants/<id>", methods=["POST"])
 def update_merchant(id):
+    print(request.form["name"])
     name = request.form["name"]
+
     merchant = Merchant(name, id)
     merchant_repository.update(merchant)
     return redirect("/merchants")
 
+# SELECT AND SHOW
+@merchants_blueprint.route("/merchants/<id>")
+def showm_erchants():
+    merchants = merchant_repository.select_all()
+    return render_template("merchants/index_merchants.html", merchants=merchants)
 
 # DELETE
 @merchants_blueprint.route("/merchants/<id>/delete", methods=["POST"])
