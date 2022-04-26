@@ -5,5 +5,3 @@ class Transaction:
         self.tag = tag
         self.value = value
         self.id = id
-
-        
