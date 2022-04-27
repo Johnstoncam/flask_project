@@ -48,7 +48,7 @@ def update_merchant(id):
 
 # SELECT AND SHOW
 @merchants_blueprint.route("/merchants/<id>")
-def showm_erchants():
+def show_merchants():
     merchants = merchant_repository.select_all()
     return render_template("merchants/index_merchants.html", merchants=merchants)
 

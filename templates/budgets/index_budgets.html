@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>BUDGET</h2>
+
+{% for budget in budgets %}
+
+<section>
+    <h3>{{ budget.value }}</h3>
+    <a href="/budgets/{{ budget.id }}/edit">Edit</a>
+    <form action="/budgets/{{ budget.id }}/delete" method="POST">
+        <input type="submit" value="Delete">
+    </form>
+</section>
+
+{% endfor %}
+{% endblock %} 

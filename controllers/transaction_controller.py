@@ -55,12 +55,6 @@ def update_transaction(id):
     value = request.form["value"]
     merchant = merchant_repository.select(merchant_id)
     tag = tag_repository.select(tag_id)
-    print("this is the merchant")
-    print(merchant.__dict__)
-    print("this is the tag")
-    print(tag.__dict__)
-    print("this is the value")
-    print(value)
     transaction = Transaction(merchant, tag, value, id)
     transaction_repository.update(transaction)
     return redirect("/transactions")

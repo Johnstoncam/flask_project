@@ -30,4 +30,3 @@ tag_repository.save(tag_2)
 
 tag_3 = Tag("Transport")
 tag_repository.save(tag_3)
-

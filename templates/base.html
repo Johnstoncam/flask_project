@@ -1,4 +1,55 @@
 <!DOCTYPE html>
+<html>
+<head>
+<style>
+.flex-container {
+  display: flex;
+  background-color: DodgerBlue;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
+</style>
+</head>
+<body>
+
+<h1>SPENDING</h1>
+
+<div class="flex-container">
+    <div>BUDGET</div>  
+    <div><a href="/budgets">VIEW</a></div>
+    <div><a href="/budgets/new">ADD</a></div>
+</div>
+
+<div class="flex-container">
+  <div>MERCHANTS</div>  
+  <div><a href="/merchants">All</a></div>
+  <div><a href="/merchants/new">Add</a></div>
+</div>
+
+<div class="flex-container">
+  <div>TAGS</div>  
+  <div><a href="/tags">All</a></div>
+  <div><a href="/tags/new">Add</a></div>
+</div>
+
+<div class="flex-container">
+  <div>TRANSACTIONS</div>  
+  <div><a href="/transactions">All</a></div>
+  <div><a href="/transactions/new">Add</a></div>
+</div>
+
+
+
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,37 +58,40 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Spending</title>
 </head>
-<body>
-    <header>
+    <body> 
+    <header> 
         <h1>Spending App</h1>
         <nav>
+            <div>class="flex-container"
+            <div>1</div>
             <ul class="menu">
                 <li><a href="/">Home</a></li>
                 <li>
-                    Merchant
-                    <ul>
-                        <li><a href="/merchants">All</a></li>
-                        <li><a href="/merchants/new">Add</a></li>
-                    </ul>
-                </li>
-                <li>
-                    Tag
-                    <ul>
-                        <li><a href="/tags">All</a></li>
-                        <li><a href="/tags/new">Add</a></li>
-                    </ul>
-                </li>
-                <li>
-                    Transaction
-                    <ul>
-                        <li><a href="/transactions">All</a></li>
-                        <li><a href="/transactions/new">Add</a></li>
-                    </ul>
-                </li>
-                
-            </ul>
+                        Merchant
+                        <ul>
+                            <li><a href="/merchants">All</a></li>
+                            <li><a href="/merchants/new">Add</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Tag
+                        <ul>
+                            <li><a href="/tags">All</a></li>
+                            <li><a href="/tags/new">Add</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Transaction
+                        <ul>
+                            <li><a href="/transactions">All</a></li>
+                            <li><a href="/transactions/new">Add</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
         </nav>
-    </header>
+    </header> -->
     <div class="container">
         {% block content %}
         {% endblock %}
