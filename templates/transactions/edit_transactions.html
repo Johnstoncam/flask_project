@@ -1,31 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2>Update a Transaction</h2>
+<h2>EDIT A TRANSACTION</h2>
 
 <form action="/transactions/{{ transaction.id }}" method="POST">
     <div>
-        <label for="merchant">Merchant:</label>
+        <label for="merchant">MERCHANT:</label>
         <select name="merchant_id" id="merchant">
             {% for merchant in merchants %}
             <option value="{{ merchant.id }}" {% if merchant.id == transaction.merchant.id %} selected {% endif %}>
-                {{ merchant.name }}
+                {{ merchant.name.upper() }}
             </option>
             {% endfor %}
         </select>
     </div>
     <div>
-        <label for="tag">Tag:</label>
+        <label for="tag">TAG:</label>
         <select name="tag_id" id="tag">
             {% for tag in tags %}
             <option value="{{ tag.id }}" {% if tag.id == transaction.tag.id %} selected {% endif %}>
-                {{ tag.name }}
+                {{ tag.name.upper() }}
             </option>
             {% endfor %}
         </select>
     </div>  
     <div>
-        <label for="value">Value:</label>
+        <label for="value">VALUE:</label>
         <input type="text" id="value" name="value" value="{{ transaction.value }}">
     </div>
     <div>

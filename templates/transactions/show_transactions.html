@@ -1,8 +1,8 @@
-<h2>{{ transaction.merchant.name }}</h2>
+<h2>{{ transaction.merchant.name.upper() }}</h2>
 
-<p>Damage: £{{ transaction.value }}</p>
+<p> £{{ transaction.value }}</p>
 
-<h3>Tag</h3>
+<h3>TAG</h3>
 <ul>
-    <li>{{ transaction.tag.name }}</li>
+    <li>{{ transaction.tag.name.upper() }}</li>
 </ul>

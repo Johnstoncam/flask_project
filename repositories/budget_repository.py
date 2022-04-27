@@ -30,6 +30,11 @@ def delete_all():
     sql = "DELETE FROM budgets"
     run_sql(sql)
 
+def delete(id):
+    sql = "DELETE FROM budgets WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)
+
 def update(budget):
     sql = "UPDATE budgets SET value = %s WHERE id = %s"
     values = [budget.value, budget.id]

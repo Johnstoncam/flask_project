@@ -3,10 +3,10 @@
 
 <h2>Update a Budget</h2>
 
-<form action="/transactions/{{ transaction.id }}" method="POST">
+<form action="/budgets/{{ budget.id }}" method="POST">
     <div>
         <label for="value">Value:</label>
-        <input type="text" id="value" name="value" value="{{ transaction.value }}">
+        <input type="text" id="value" name="value" value="{{ budget.value }}">
     </div>
     <div>
         <input type="submit">

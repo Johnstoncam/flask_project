@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2>Merchants</h2>
+<h2>MERCHANTS</h2>
 
 {% for merchant in merchants %}
 
 <section>
-    <p>{{ merchant.name }}</p>
-    <a href="/merchants/{{ merchant.id }}/edit">Edit</a>
+    <p>{{ merchant.name.upper() }}</p>
+    <a href="/merchants/{{ merchant.id }}/edit">EDIT</a>
     <form action="/merchants/{{ merchant.id }}/delete" method="POST">
         <input type="submit" value="Delete">
     </form>

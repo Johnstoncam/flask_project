@@ -33,7 +33,7 @@ def create_budget():
 @budgets_blueprint.route("/budgets/<id>/edit")
 def edit_budget(id):
     budget = budget_repository.select(id)
-    return render_template('budgets/edit_budgets.html', budget=budget)
+    return render_template('/budgets/edit_budgets.html', budget=budget)
 
 
 # UPDATE
@@ -52,7 +52,7 @@ def show_budgets():
     return render_template("budgets/index_merchants.html", budgets=budgets)
 
 # DELETE
-@budgets_blueprint.route("/budgetss/<id>/delete", methods=["POST"])
+@budgets_blueprint.route("/budgets/<id>/delete", methods=["POST"])
 def delete_budget(id):
     budget_repository.delete(id)
     return redirect("/budgets")

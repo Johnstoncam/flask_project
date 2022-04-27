@@ -1,31 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2>Add a New Transaction</h2>
+<h2>ADD A NEW TRANSACTION</h2>
 
 <form action="/transactions" method="POST">
     <div>
-        <label for="merchant">Merchant:</label>
+        <label for="merchant">MERCHANT:</label>
         <select name="merchant_id" id="merchant">
             {% for merchant in merchants %}
             <option value="{{ merchant.id }}">
-                {{ merchant.name }}
+                {{ merchant.name.upper() }}
             </option>
             {% endfor %}
         </select>
     </div>
     <div>
-        <label for="tag">Tag:</label>
+        <label for="tag">TAG:</label>
         <select name="tag_id" id="tag">
             {% for tag in tags %}
             <option value="{{ tag.id }}">
-                {{ tag.name }}
+                {{ tag.name.upper() }}
             </option>
             {% endfor %}
         </select>
     </div>
     <div>
-        <label for="value">Amount:</label>
+        <label for="value">AMOUNT:</label>
         <input type="number" id = "value" name="value" min="0" value="0" step=".01">
     </div>
     <div>

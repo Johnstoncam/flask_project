@@ -4,17 +4,19 @@ from models.transaction import Transaction
 import repositories.merchant_repository as merchant_repository
 import repositories.tag_repository as tag_repository
 import repositories.transaction_repository as transaction_repository
+from models.budget import Budget
+import repositories.budget_repository as budget_repository
 
 transactions_blueprint = Blueprint("transactions", __name__)
 
 # INDEX
 @transactions_blueprint.route("/transactions")
 def transactions():
-    transactions = transaction_repository.select_all()
+    transactions = transaction_repository.select_all()  
     transaction_total = 0
     for transaction in transactions:
         transaction_total += transaction.value
-    return render_template("transactions/index_transactions.html", transactions=transactions, total=transaction_total)
+    return render_template("transactions/index_transactions.html", transactions=transactions, total=transaction_total, )
 
 
 # NEW
@@ -35,6 +37,7 @@ def create_transaction():
     tag = tag_repository.select(tag_id)
     new_transaction = Transaction(merchant, tag, value)
     transaction_repository.save(new_transaction)
+    
     return redirect("/transactions")
 
 
@@ -71,9 +74,3 @@ def show_transaction(id):
 def delete_transaction(id):
     transaction_repository.delete(id)
     return redirect("/transactions")
-
-# # SELECT BY TRANSACTION ID
-# @transactions_blueprint.route("/transactions/<id>/delete", methods=["POST"])
-# def asdfasd(id):
-#     transaction_repository.select_transaction(id)
-#     return 

@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2>Spending (£{{ total }})</h2>
+<h2>TOTAL SPENDING £{{ total }} {{ banana }}</h2>
 
 {% for transaction in transactions %}
 
 <section>
-    <h3>£{{ transaction.value }} spent @ {{ transaction.merchant.name }} ({{ transaction.tag.name }})</h3>
-    <a href="/transactions/{{ transaction.id }}/edit">Edit</a>
+    <h3>{{ transaction.merchant.name.upper() }} ------- {{ transaction.tag.name.upper() }} ------- £{{ transaction.value }}</h3>
+    <a href="/transactions/{{ transaction.id }}/edit">EDIT</a>
     <form action="/transactions/{{ transaction.id }}/delete" method="POST">
         <input type="submit" value="Delete">
     </form>
-    <a href="/transactions/{{ transaction.id }}">Details</a>
+    <a href="/transactions/{{ transaction.id }}">DETAILS</a>
 </section>
 
 {% endfor %}
