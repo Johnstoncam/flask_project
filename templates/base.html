@@ -8,20 +8,29 @@
     <title>Spending</title>
 <style>
 .grid-container {
-  display: grid;
-  background-color: #FFE633;
+  display: inline-grid;
+  background-color: #015da9;
+  grid-template-columns: auto auto auto auto
 }
 
 .grid-container > div {
-  background-color: #a88a1f;
+  background-color: #fede00;
   margin: 8px;
   padding: 8px;
-  font-size: 15px;
+  font-size: 16px;
   justify-items: center;
 }
 </style >
 </head>
 <body >
+    <div>
+        <h1>
+            Banana(Flask)®
+        </h1>
+    </div>
+    <div>
+        <img src="https://www.logolynx.com/images/logolynx/36/3697f45fee7c7c329501accde549f5de.jpeg" width="100%" height="auto" alt="banana_lady">
+    </div>
     <div class="grid-container">
         <div>BUDGET</div>  
         <div><a href="/budgets">VIEW</a></div>
@@ -47,7 +56,9 @@
     </div>
 </body>
 </html>
-    <body  style="background-color:#FFE633;
+    <body  style="background-color:#015da9;
+                color: black;
+                font-size: medium;
     
         <div class="container">
         {% block content %}
