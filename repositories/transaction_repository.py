@@ -4,6 +4,8 @@ from models.merchant import Merchant
 import repositories.merchant_repository as merchant_repository
 from models.tag import Tag
 import repositories.tag_repository as tag_repository
+from models.budget import Budget
+import repositories.budget_repository as budget_repository
 
 def save(transaction):
     sql = "INSERT INTO transactions (merchant_id, tag_id, value) VALUES (%s, %s, %s) RETURNING id"

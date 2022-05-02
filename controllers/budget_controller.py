@@ -24,7 +24,8 @@ def new_budget():
 @budgets_blueprint.route("/budgets", methods=["POST"])
 def create_budget():
     value = request.form["value"]
-    new_budget = Budget(value)
+    name = request.form["name"]
+    new_budget = Budget(value, name)
     budget_repository.save(new_budget)
     return redirect("/budgets")
 
@@ -40,8 +41,8 @@ def edit_budget(id):
 @budgets_blueprint.route("/budgets/<id>", methods=["POST"])
 def update_budget(id):
     value = request.form["value"]
-
-    budget = Budget(value, id)
+    name = request.form["name"]
+    budget = Budget(value, name, id)
     budget_repository.update(budget)
     return redirect("/budgets")
 

@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2>BUDGETS ARE FOR WIMPS</h2>
+<h2>INDIVIDUAL BUDGETS</h2>
 
 {% for budget in budgets %}
 
 <section>
-    <h3>I THINK YOUR BUDGET WAS £{{ budget.value }} BUT I'M NOT COUNTING SO WHATEVER. GO BANANAS.</h3>
+    <h3>{{ budget.name.upper() }}, I THINK YOUR BUDGET WAS £{{ budget.value }} BUT I'M NOT COUNTING SO WHATEVER. GO BANANAS.</h3>
     <a href="/budgets/{{ budget.id }}/edit">Edit</a>
     <form action="/budgets/{{ budget.id }}/delete" method="POST">
         <input type="submit" value="Delete">

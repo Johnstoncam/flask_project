@@ -1,6 +1,3 @@
--- create tables for  merchants, tags and transactions
--- remember that names within this file should be plural
-
 DROP TABLE IF EXISTS budgets;
 DROP TABLE IF EXISTS transactions;
 DROP TABLE IF EXISTS merchants;
@@ -17,15 +14,17 @@ CREATE TABLE tags (
     name VARCHAR(255)
 );
 
+CREATE TABLE budgets (
+    id SERIAL PRIMARY KEY,
+    value FLOAT(2),
+    name VARCHAR(255)
+);
+
 CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
     merchant_id SERIAL REFERENCES merchants(id),
     tag_id SERIAL REFERENCES tags(id),
-    value FLOAT(2)
-);
-
-CREATE TABLE budgets (
-    id SERIAL PRIMARY KEY,
-    value FLOAT(2)
+    value FLOAT(2),
+    budget_id integer NOT NULL REFERENCES budgets(id)
 );
 
