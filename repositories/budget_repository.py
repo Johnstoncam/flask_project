@@ -33,7 +33,10 @@ def delete_all():
 def delete(id):
     sql = "DELETE FROM budgets WHERE id = %s"
     values = [id]
-    run_sql(sql, values)
+    result = run_sql(sql, values)[0]
+    budget = Budget(result["value"], result["name"], result["id"])
+    return budget
+
 
 def update(budget):
     sql = "UPDATE budgets SET value = %s, name = %s WHERE id = %s"
@@ -41,9 +44,13 @@ def update(budget):
     run_sql(sql, values)
 
 def get_difference(id):
-    sql = "SELECT SUM(t.value)-b.value as budget_difference FROM transactions as t INNER JOIN budgets as b ON b.id = t.budget_id WHERE b.name = %s GROUP BY b.name, b.value"
+    sql = "SELECT b.value-SUM(t.value) as budget_difference FROM transactions as t INNER JOIN budgets as b ON b.id=t.budget_id WHERE b.id=%s GROUP BY b.name, b.value"
     values = [id]
-    run_sql(sql, values)
+    result = run_sql(sql, values)[0]
+    budget_difference = result["budget_difference"]
+    return budget_difference
+
+    
 
 
 

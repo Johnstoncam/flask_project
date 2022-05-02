@@ -8,8 +8,8 @@ from models.budget import Budget
 import repositories.budget_repository as budget_repository
 
 def save(transaction):
-    sql = "INSERT INTO transactions (merchant_id, tag_id, value) VALUES (%s, %s, %s) RETURNING id"
-    values = [transaction.merchant.id, transaction.tag.id, transaction.value]
+    sql = "INSERT INTO transactions (merchant_id, tag_id, value, budget_id) VALUES (%s, %s, %s, %s) RETURNING id"
+    values = [transaction.merchant.id, transaction.tag.id, transaction.value, transaction.budget]
     results = run_sql(sql, values)
     id = results[0]['id']
     transaction.id = id
@@ -22,7 +22,8 @@ def select_all():
     for result in results:
         merchant = merchant_repository.select(result["merchant_id"])
         tag = tag_repository.select(result["tag_id"])
-        transaction = Transaction(merchant, tag, result["value"], result["id"])
+        budget = budget_repository.select(result["budget_id"])
+        transaction = Transaction(merchant, tag, result["value"], budget, result["id"])
         transactions.append(transaction)
     return transactions
 
@@ -33,7 +34,8 @@ def select(id):
     result = run_sql(sql, values)[0]
     merchant = merchant_repository.select(result["merchant_id"])
     tag = tag_repository.select(result["tag_id"])
-    transaction = Transaction(merchant, tag, result["value"], result["id"])
+    budget = budget_repository.select(result["budget_id"])
+    transaction = Transaction(merchant, tag, result["value"], budget, result["id"])
     return transaction
 
 
@@ -49,10 +51,10 @@ def delete(id):
 
 
 def update(transaction):
-    sql = "UPDATE transactions SET (merchant_id, tag_id, value) = (%s, %s, %s) WHERE id = %s"
-    values = [transaction.merchant.id, transaction.tag.id, transaction.value, transaction.id]
+    sql = "UPDATE transactions SET (merchant_id, tag_id, value, budget_id) = (%s, %s, %s, %s) WHERE id = %s"
+    values = [transaction.merchant.id, transaction.tag.id, transaction.value, transaction.budget.id, transaction.id]
     run_sql(sql, values)
-
+    return transaction
 
 def select_transaction(id):
     transactions = []

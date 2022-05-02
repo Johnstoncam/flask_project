@@ -25,6 +25,16 @@
         </select>
     </div>  
     <div>
+        <label for="budget">BUDGET:</label>
+        <select name="budget_id" id="budget">
+            {% for budget in budgets %}
+            <option value="{{ budget.id }}" {% if budget.id == transaction.budget.id %} selected {% endif %}>
+                {{ budget.name.upper() }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>  
+    <div>
         <label for="value">VALUE:</label>
         <input type="text" id="value" name="value" value="{{ transaction.value }}">
     </div>

@@ -6,7 +6,7 @@
 {% for transaction in transactions %}
 
 <section>
-    <h3>{{ transaction.merchant.name.upper() }} - - - - -  {{ transaction.tag.name.upper() }} - - - - -  £{{ transaction.value }}</h3>
+    <h3>{{ transaction.merchant.name.upper() }} - - -  {{ transaction.tag.name.upper() }} - - - {{ transaction.budget.name }} - - -  £{{ transaction.value }}</h3>
     <a href="/transactions/{{ transaction.id }}/edit">EDIT</a>
     <a href="/transactions/{{ transaction.id }}">DETAILS</a>
     <form action="/transactions/{{ transaction.id }}/delete" method="POST">

@@ -16,7 +16,7 @@ def transactions():
     transaction_total = 0
     for transaction in transactions:
         transaction_total += transaction.value
-    return render_template("transactions/index_transactions.html", transactions=transactions, total=transaction_total, )
+    return render_template("transactions/index_transactions.html", transactions=transactions, total=transaction_total)
 
 
 # NEW
@@ -24,7 +24,8 @@ def transactions():
 def new_transaction():
     merchants = merchant_repository.select_all()
     tags = tag_repository.select_all()
-    return render_template("transactions/new_transactions.html", merchants=merchants, tags=tags)
+    budgets = budget_repository.select_all()
+    return render_template("transactions/new_transactions.html", merchants=merchants, tags=tags, budgets=budgets)
 
 
 # CREATE
@@ -33,9 +34,10 @@ def create_transaction():
     merchant_id = request.form["merchant_id"]
     tag_id = request.form["tag_id"]
     value = request.form["value"]
+    budget = request.form["budget_id"]
     merchant = merchant_repository.select(merchant_id)
     tag = tag_repository.select(tag_id)
-    new_transaction = Transaction(merchant, tag, value)
+    new_transaction = Transaction(merchant, tag, value, budget)
     transaction_repository.save(new_transaction)
     
     return redirect("/transactions")
@@ -47,7 +49,8 @@ def edit_transaction(id):
     transaction = transaction_repository.select(id)
     merchants = merchant_repository.select_all()
     tags = tag_repository.select_all()
-    return render_template('transactions/edit_transactions.html', transaction=transaction, merchants=merchants, tags=tags)
+    budgets = budget_repository.select_all()
+    return render_template('transactions/edit_transactions.html', transaction=transaction, merchants=merchants, tags=tags, budgets=budgets)
 
 
 # UPDATE
@@ -56,9 +59,11 @@ def update_transaction(id):
     merchant_id = request.form["merchant_id"]
     tag_id = request.form["tag_id"]
     value = request.form["value"]
+    budget_id = request.form["budget_id"]
+    budget = budget_repository.select(budget_id)
     merchant = merchant_repository.select(merchant_id)
     tag = tag_repository.select(tag_id)
-    transaction = Transaction(merchant, tag, value, id)
+    transaction = Transaction(merchant, tag, value, budget, id)
     transaction_repository.update(transaction)
     return redirect("/transactions")
 
